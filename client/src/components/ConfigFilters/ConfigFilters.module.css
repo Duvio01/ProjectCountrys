@@ -1,0 +1,64 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.content label {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.contentDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.contentDiv button { 
+    height: 27px;
+    width: 87px;
+    border-radius: 12px;
+    color: black; 
+    cursor: pointer;
+    background-color: white; 
+    border: 2px solid #034c84;
+} 
+button:hover {
+    background-color: #034c84; 
+    color: white;
+}
+
+select {
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+    width: 161px;
+    font-family: inherit;
+
+    min-width: 15ch;
+    max-width: 30ch;
+  
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+  
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  
+
+    &:not(.select--multiple)::after {
+      content: "";
+      justify-self: end;
+      width: 0.8em;
+      height: 0.5em;
+      background-color: var(--select-arrow);
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
+}
+

@@ -1,0 +1,14 @@
+.content {
+    height: 232px;
+    background: radial-gradient(circle farthest-corner at center center, #4a00ff 0%, #00ffe080 87%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+}
+
+.content span {
+    font-size: 30px;
+    font-weight: bolder;
+}
