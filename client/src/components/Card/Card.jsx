@@ -1,11 +1,11 @@
 import style from './Card.module.css'
 
-const Card = () => {
+const Card = ({name, image, continent}) => {
     return (
         <div className={style.content}>
-            <span>Colombia</span>
-            <img width='260px' height='150px' src="https://flagcdn.com/w320/co.png" alt="Prueba"/>
-            <span>America del ser</span>
+            <span className={name.length > 29 ? style.textLarge : name.length > 17 ? style.textMedium : ''}>{name}</span>
+            <img width='260px' height='150px' src={image} alt="Prueba"/>
+            <span>{continent}</span>
         </div>
     )
 }

@@ -4,6 +4,10 @@ const { Country, Activity } = require("../connection_db")
 const countryAll = async (req, res) => {
     try {
         let { name, paginate } = req.query
+
+        if(paginate === 1) paginate = 0
+        else paginate = (paginate * 10) - 10 
+
         if(name){
             name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
             const countries = await Country.findAndCountAll({
@@ -16,7 +20,7 @@ const countryAll = async (req, res) => {
                 offset: paginate ? paginate : 0
             })
 
-            if(countries.length === 0) return res.status(200).send('There is no country with the name provided')
+            if(countries.rows.length === 0) return res.status(404).send('There is no country with the name provided')
 
             return res.status(200).json(countries)
         }else{

@@ -11,4 +11,13 @@
 .content span {
     font-size: 30px;
     font-weight: bolder;
+    color: white;
+}
+
+.textMedium {
+    font-size: 22px !important;
+}
+
+.textLarge {
+    font-size: 15px !important;
 }

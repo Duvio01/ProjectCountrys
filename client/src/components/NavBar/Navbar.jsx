@@ -1,12 +1,22 @@
+import { useState } from 'react'
 import style from './NavBar.module.css'
 
-const NavBaR = () => {
+const NavBaR = (props) => {
+    const [nameCountry, setCountry] = useState('')
+
+    const searchInput = (event) => {
+        setCountry(event.target.value)
+    }
+
     return (
         <div className={style.content}>
             <h1>Countries</h1>
             <div className={style.divSearch}>
-                <input placeholder='Enter the name of the country here' />
-                <button className={style.send}>Search</button>
+                <input value={nameCountry} onChange={searchInput} placeholder='Enter the name of the country here' />
+                <button onClick={ () => {
+                    props.onSearch(nameCountry)
+                    setCountry('')
+                } } className={style.send}>Search</button>
             </div>
         </div>
     )
