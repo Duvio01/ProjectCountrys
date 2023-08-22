@@ -10,7 +10,6 @@
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 25px;
-    justify-content: space-between;
 }
 
 .divCard {
@@ -24,8 +23,13 @@
     display: flex;
     justify-content: end;
     gap: 12px;
-    padding: 0px 30px;
     align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 242px;
+    padding-bottom: 10px;
+    padding-right: 37px;
 }
 
 .divPagination button {

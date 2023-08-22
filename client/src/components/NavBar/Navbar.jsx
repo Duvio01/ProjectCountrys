@@ -15,7 +15,6 @@ const NavBaR = (props) => {
                 <input value={nameCountry} onChange={searchInput} placeholder='Enter the name of the country here' />
                 <button onClick={ () => {
                     props.onSearch(nameCountry)
-                    setCountry('')
                 } } className={style.send}>Search</button>
             </div>
         </div>

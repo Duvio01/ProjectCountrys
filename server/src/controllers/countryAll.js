@@ -3,21 +3,31 @@ const { Country, Activity } = require("../connection_db")
 
 const countryAll = async (req, res) => {
     try {
-        let { name, paginate } = req.query
+        let { name, paginate, sort, order, continent } = req.query
 
         if(paginate === 1) paginate = 0
         else paginate = (paginate * 10) - 10 
 
-        if(name){
+        let where = {}
+        if(name) {
             name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+            where['name'] = {
+                [Op.like]: `%${name}%`
+            }
+        }
+
+        if(continent){
+            where['continent'] = continent
+        }
+
+        if(name){
             const countries = await Country.findAndCountAll({
-                where: {
-                    name: {
-                        [Op.like]: `%${name}%`
-                    }
-                },
+                where: where,
                 limit: 10,
-                offset: paginate ? paginate : 0
+                offset: paginate ? paginate : 0,
+                order: sort ? [
+                    [sort, order]
+                ] : []
             })
 
             if(countries.rows.length === 0) return res.status(404).send('There is no country with the name provided')
@@ -25,8 +35,12 @@ const countryAll = async (req, res) => {
             return res.status(200).json(countries)
         }else{
             const allCountries = await Country.findAndCountAll({
+                where: where,
                 limit: 10,
-                offset: paginate ? paginate : 0
+                offset: paginate ? paginate : 0,
+                order: sort ? [
+                    [sort, order]
+                ] : []
             })
             return res.status(200).json(allCountries)
         }
