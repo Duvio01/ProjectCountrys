@@ -1,1 +1,2 @@
-export const COUNTRIES = 'COUNTRIES'
+export const AllCOUNTRIES = 'AllCOUNTRIES'
+export const FINDCOUNTRY = 'FINDCOUNTRY'

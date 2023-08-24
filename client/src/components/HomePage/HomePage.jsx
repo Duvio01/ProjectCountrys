@@ -6,12 +6,12 @@ import NavBaR from "../NavBar/Navbar"
 import style from './HomePage.module.css'
 import Greater from '/images/mayorque.png'
 import Lesser from '/images/menorQue.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { allCountries } from "../../redux/action"
 
 const HomePage = () => {
 
-    const [countries, setCountries] = useState([])
     const [pagination, setPagination] = useState(1)
-    const [totalPages, setTotalPages] = useState(null)
     const [nameSearch, setNameSearch] = useState('')
     const [order, setOrder] = useState('')
     const [typeOrder, setTypeOrder] = useState('')
@@ -20,35 +20,25 @@ const HomePage = () => {
     const [nameFilter, setNameFilter] = useState(null)
     const [continent, setContinent] = useState('')
 
+    const dispatch = useDispatch()
+    const countries = useSelector((state) => state.allCountries)
+    const totalPages = useSelector((state) => state.totalPages)
 
     useEffect(() => {
-        callApiCountries()
+        dispatch(allCountries())
     }, [])
 
     useEffect(() => {
-        callApiCountries()
+        dispatch(allCountries(nameSearch, pagination, order, typeOrder, continent))
     }, [pagination, nameSearch, typeOrder, continent])
 
-    const callApiCountries = () => {
-        axios(`http://localhost:3001/countries?name=${nameSearch}&paginate=${pagination}&sort=${order}&order=${typeOrder}&continent=${continent}`).then(({ data }) => {
-            setCountries(data)
-            setTotalPages(Math.ceil(data.count / 10))
-        })
-            .catch((error) => {
-                setCountries([])
-                setTotalPages(null)
-                alert(error.response.data)
-            })
-    }
 
     const changePagination = (type) => {
         if (type === 'Greater') {
             setPagination(pagination + 1)
-            callApiCountries()
         }
         if (type === 'Lesser') {
             setPagination(pagination - 1)
-            callApiCountries()
         }
     }
 
@@ -107,6 +97,7 @@ const HomePage = () => {
                             return (
                                 <Card
                                     key={country.id}
+                                    id={country.id}
                                     name={country.name}
                                     image={country.image}
                                     continent={country.continent}
