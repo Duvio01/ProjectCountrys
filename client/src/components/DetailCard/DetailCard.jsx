@@ -6,25 +6,18 @@ import { findCountry } from "../../redux/action"
 const DetailCard = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
+    const country = useSelector((state) => state.country)
 
     useEffect(() => {
         dispatch(findCountry(id))
-    }, [id])
+    }, [id, dispatch])
 
-    const country = useSelector((state) => console.log(state.country))
-    console.log(typeof country)
-    //console.log(id, allCountries)
     return (
         <>
-            <p>{JSON.stringify(country)} aqui estoy</p>
-            {
-                country !== undefined && country.hasOwnProperty('name') (
-                    <>
-                        Detalle de card
-                        <p>{country.name}</p>
-                    </>
-                )
-            }
+            Detalle de card
+            <h1>{country.continent}</h1>
+            <p>{country.name}</p>
+            <img src={country.image}/>
         </>
     )
 }
