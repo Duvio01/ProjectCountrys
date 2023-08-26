@@ -3,16 +3,29 @@ const { Country, Activity } = require("../connection_db")
 
 const countryAll = async (req, res) => {
     try {
-        let { name, paginate, sort, order, continent } = req.query
+        let { name, paginate, sort, order, continent, limit, activity } = req.query
 
         if(paginate === 1) paginate = 0
         else paginate = (paginate * 10) - 10 
-
+        
         let where = {}
         if(name) {
             name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
             where['name'] = {
                 [Op.like]: `%${name}%`
+            }
+        }
+
+        if(activity){
+            const activityResp = await Activity.findOne({
+                where: { name: activity},
+                include: Country
+            })
+
+            const findCountries = activityResp.Countries.map(country => country.id)
+
+            where['id'] = {
+                [Op.in]: findCountries
             }
         }
 
@@ -36,7 +49,7 @@ const countryAll = async (req, res) => {
         }else{
             const allCountries = await Country.findAndCountAll({
                 where: where,
-                limit: 10,
+                limit: limit ? limit : 10,
                 offset: paginate ? paginate : 0,
                 order: sort ? [
                     [sort, order]

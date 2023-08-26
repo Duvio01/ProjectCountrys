@@ -7,7 +7,7 @@ import style from './HomePage.module.css'
 import Greater from '/images/mayorque.png'
 import Lesser from '/images/menorQue.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { allCountries } from "../../redux/action"
+import { allActivities, allCountries } from "../../redux/action"
 
 const HomePage = () => {
 
@@ -19,6 +19,7 @@ const HomePage = () => {
     const [isfilter, setFilter] = useState(false)
     const [nameFilter, setNameFilter] = useState(null)
     const [continent, setContinent] = useState('')
+    const [valueActivity, setValueActivity] = useState('')
 
     const dispatch = useDispatch()
     const countries = useSelector((state) => state.allCountries)
@@ -26,11 +27,12 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(allCountries())
+        dispatch(allActivities())
     }, [])
 
     useEffect(() => {
-        dispatch(allCountries(nameSearch, pagination, order, typeOrder, continent))
-    }, [pagination, nameSearch, typeOrder, continent])
+        dispatch(allCountries(nameSearch, pagination, order, typeOrder, continent, valueActivity))
+    }, [pagination, nameSearch, typeOrder, continent, valueActivity])
 
 
     const changePagination = (type) => {
@@ -52,7 +54,11 @@ const HomePage = () => {
     }
 
     const filterCountries = (event) => {
-        setContinent(event.target.value)
+        if(nameFilter === 'Continent'){
+            setContinent(event.target.value)
+        }else{
+            setValueActivity(event.target.value)
+        }
         setPagination(1)
     }
 

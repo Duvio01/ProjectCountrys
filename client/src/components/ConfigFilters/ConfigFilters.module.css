@@ -31,7 +31,7 @@ button:hover {
     color: white;
 }
 
-select {
+.selectFilter {
     appearance: none;
     background-color: transparent;
     margin: 0;

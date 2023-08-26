@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import style from './LandingPage.module.css'
 import { Link } from 'react-router-dom'
-import { allCountries } from '../../redux/action'
+import { allActivities, allCountries } from '../../redux/action'
 
 const LandingPage = () => {
 
@@ -9,6 +9,7 @@ const LandingPage = () => {
 
   const getCharacter = () => {
     dispatch(allCountries())
+    dispatch(allActivities())
   }
 
   return (

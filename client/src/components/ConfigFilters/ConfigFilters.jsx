@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import style from './ConfigFilters.module.css'
+import { useSelector } from 'react-redux'
 
 const ConfigFilters = ({ changeSelectFilter, isOrdenamiento, isfilter, nameFilter, orderCountries, filterCountries }) => {
 
@@ -11,29 +12,29 @@ const ConfigFilters = ({ changeSelectFilter, isOrdenamiento, isfilter, nameFilte
         'North America',
         'Europe']
 
+    const activities = useSelector(state => state.allActivities)
+    
     return (
         <div className={style.content}>
             <div className={style.contentDiv}>
                 <label>Filter by:</label>
-                <select onChange={changeSelectFilter} name='filter' className={style.select}>
+                <select onChange={changeSelectFilter} name='filter' className={style.selectFilter}>
                     <option></option>
                     <option>Continent</option>
                     <option>Activity</option>
                 </select>
                 {
                     isfilter && (
-                        <>
+                        <>  
                             <label>{nameFilter}:</label>
-                            <select onChange={filterCountries} className={style.select}>
+                            <select onChange={filterCountries} className={style.selectFilter}>
                                 {   
                                     nameFilter === 'Continent' ? (
                                         continents.map((continent, index) => <option key={index} value={continent}>{continent}</option>)
                                     ) : (
-                                        <>
-                                            <option>opcion 1</option>
-                                            <option>opcion 1</option>
-                                            <option>opcion 1</option>
-                                        </>
+                                        activities.length > 0 && (
+                                            activities?.map((activity, index) => <option key={index} value={activity.name}>{activity.name}</option>)
+                                        )
                                     )
                                 }
                             </select>
@@ -43,7 +44,7 @@ const ConfigFilters = ({ changeSelectFilter, isOrdenamiento, isfilter, nameFilte
             </div>
             <div className={style.contentDiv}>
                 <label>Sort by:</label>
-                <select onChange={changeSelectFilter} name='sort'>
+                <select className={style.selectFilter} onChange={changeSelectFilter} name='sort'>
                     <option></option>
                     <option value='name'>Alphabetically</option>
                     <option value='population'>Population</option>

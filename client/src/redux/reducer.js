@@ -1,10 +1,12 @@
-import { AllCOUNTRIES, FINDCOUNTRY } from "./action_types";
+import { ALLACTIVITIES, AllCOUNTRIES, AllCOUNTRIESFORM, FINDCOUNTRY } from "./action_types";
 
 
 const initialState = {
     allCountries: [],
     totalPages: null,
-    country: {}
+    country: {},
+    allCountriesForm: [],
+    allActivities: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +21,17 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 country: action.payload
+            }
+        case AllCOUNTRIESFORM:
+            return {
+                ...state,
+                allCountriesForm: action.payload
+            }
+        case ALLACTIVITIES: 
+            action.payload.unshift({name:''})
+            return {
+                ...state,
+                allActivities: action.payload
             }
         default:
             return {

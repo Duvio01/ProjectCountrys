@@ -1,0 +1,46 @@
+.container {
+    background-image: url('/images/homePage.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+    background-position: center;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.divForm {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.checkboxSelect {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+ .checkboxSelect option {
+    padding: 10px;
+  }
+
+.checkboxSelect option:checked {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
