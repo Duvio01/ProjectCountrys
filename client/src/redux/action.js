@@ -13,6 +13,10 @@ export const allCountries = (nameSearch = '', pagination = 1, order = '', typeOr
             })
         } catch (error) {
             alert(error.message)
+            return dispatch({
+                type: AllCOUNTRIES,
+                payload: []
+            })
         }
     }
 }

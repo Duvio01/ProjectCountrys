@@ -29,6 +29,10 @@
     flex-direction: column;
 }
 
+.contentDataPrincpial p {
+    font-size: 30px;
+}
+
 .dislayButton{
     padding: 10px 10px;
 }

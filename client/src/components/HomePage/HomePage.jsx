@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import axios from 'axios'
 import Card from "../Card/Card"
 import ConfigFilters from "../ConfigFilters/ConfigFilters"
 import NavBaR from "../NavBar/Navbar"
@@ -78,9 +77,12 @@ const HomePage = () => {
             if (event.target.value !== '') {
                 setFilter(true)
                 setNameFilter(event.target.value)
+                if(event.target.value === 'Continent') setValueActivity('')
+                if(event.target.value === 'Activity') setContinent('')
             } else {
                 setFilter(false)
                 setContinent('')
+                setValueActivity('')
             }
         }
     }
@@ -114,14 +116,14 @@ const HomePage = () => {
                 </div>
                 <div className={style.divPagination}>
                     {
-                        totalPages && (
+                        totalPages ? (
                             <>
                                 <button onClick={() => changePagination('Lesser')} disabled={pagination === 1}><img height='10px' width='10px' src={Lesser} /></button>
                                 <span>{pagination} </span>
                                 <button disabled={totalPages === pagination} onClick={() => changePagination('Greater')} ><img height='10px' width='10px' src={Greater} /></button>
                                 <span>Total de paginas: {totalPages}</span>
                             </>
-                        )
+                        ) : null
                     }
                 </div>
             </div>

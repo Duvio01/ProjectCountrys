@@ -1,9 +1,10 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './Form.module.css'
 import { useEffect, useState } from 'react'
 import { validations } from './Validations'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { allCountriesForm } from '../../redux/action'
 
 export const Form = () => {
 
@@ -15,8 +16,14 @@ export const Form = () => {
         countries: []
     })
     const [errors, setErrors] = useState({})
+    const [disableButton, setDisableButton] = useState(true)
     const countries = useSelector(state => state.allCountriesForm)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(allCountriesForm())
+    }, [])
 
     const changeForm = (event) => {
         if (event.target.name === 'countries') {
@@ -27,16 +34,20 @@ export const Form = () => {
             setDataForm({ ...dataForm, [event.target.name]: event.target.value })
             setErrors(validations({ ...dataForm, [event.target.name]: event.target.value }))
         }
+
+        if (Object.keys(errors).length === 0 && dataForm.name !== '') {
+            setDisableButton(false)
+        }
     }
 
     const submitForm = (event) => {
         event.preventDefault()
-        if(Object.keys(errors).length === 0 && dataForm.name !== ''){
+        if (Object.keys(errors).length === 0 && dataForm.name !== '') {
             axios.post('http://localhost:3001/activities', dataForm).then((data) => {
                 alert(data.data)
                 navigate('/home')
             })
-        }else{
+        } else {
             alert('Error: Some fields are empty or have errors')
         }
     }
@@ -44,6 +55,9 @@ export const Form = () => {
     return (
         <div className={style.container}>
             <div className={style.content}>
+                <Link to='/home' className={style.dislayButton}>
+                    <button>Back</button>
+                </Link>
                 <h1>New Activity</h1>
                 <form onSubmit={submitForm} className={style.divForm}>
                     <div>
@@ -115,7 +129,7 @@ export const Form = () => {
                         }
                     </div>
                     <div>
-                        <button>Save</button>
+                        <button disabled={disableButton}>Save</button>
                     </div>
                 </form>
             </div>

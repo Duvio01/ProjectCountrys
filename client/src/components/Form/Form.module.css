@@ -15,13 +15,59 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 100px;
+    gap: 10px;
 }
 
 .divForm {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
+}
+
+.divForm div {
+    display: flex;
+    flex-direction: column;
+    width: 333px;
+}
+
+.divForm div label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.divForm div span {
+    color: red;
+    background-color: #ffebeb;
+    border: 1px solid #ff9999;
+    padding: 4px;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.divForm div button {
+    background-color:rgb(255, 255, 255);
+    color: black;
+    padding: 5px 10px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.divForm div button:hover {
+    border: 1px solid #05ec2b;
+    background-color: #05ec2b;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.divForm div button:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
 }
 
 .checkboxSelect {
@@ -34,13 +80,36 @@
     appearance: none;
     outline: none;
     cursor: pointer;
-  }
+}
 
- .checkboxSelect option {
+.checkboxSelect option {
     padding: 10px;
-  }
+}
 
 .checkboxSelect option:checked {
     background-color: #f0f0f0;
     font-weight: bold;
+}
+
+.dislayButton{
+    padding: 10px 10px;
+    position: absolute;
+    left: 1%;
+    top: 1%;
+}
+
+.dislayButton button {
+    border: 1px solid #0099cc;
+    background-color: #00aacc;
+    color: #ffffff;
+    padding: 10px 47px;
+    border-radius: 18px;
+    font-size: 20px;
+
+    :hover {
+        border: 1px solid #0099cc;
+    background-color: #00aacc;
+    color: #ffffff;
+    padding: 10px 47px;
+    }
 }

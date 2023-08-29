@@ -26,10 +26,10 @@ const DetailCard = () => {
                 </div>
                 <div className={style.contentDescription}>
                     <div className={style.contentDataPrincpial}>
-                        <h5>Capital: {country.capital}</h5>
-                        <h5>Subregion: {country.subregion}</h5>
-                        <h5>Population: {country.population}</h5>
-                        <h5>Continent: {country.continent}</h5>
+                        <p><strong>Capital:</strong> {country.capital}</p>
+                        <p><strong>Subregion:</strong> {country.subregion}</p>
+                        <p><strong>Population:</strong> {country.population}</p>
+                        <p><strong>Continent:</strong> {country.continent}</p>
                     </div>
                     <div>
                         <img className={style.imgCountry} width='400px' height='350px' src={country.image} />
