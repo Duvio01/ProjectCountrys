@@ -1,4 +1,4 @@
-import { ALLACTIVITIES, AllCOUNTRIES, AllCOUNTRIESFORM, FINDCOUNTRY } from "./action_types";
+import { ALLACTIVITIES, AllCOUNTRIES, AllCOUNTRIESFORM } from "./action_types";
 
 
 const initialState = {
@@ -16,11 +16,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allCountries: action.payload,
                 totalPages: Math.ceil(action.payload.count / 10)  
-            }
-        case FINDCOUNTRY: 
-            return {
-                ...state,
-                country: action.payload
             }
         case AllCOUNTRIESFORM:
             return {

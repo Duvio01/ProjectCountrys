@@ -1,4 +1,3 @@
 export const AllCOUNTRIES = 'AllCOUNTRIES'
-export const FINDCOUNTRY = 'FINDCOUNTRY'
 export const AllCOUNTRIESFORM = 'AllCOUNTRIESFORM'
 export const ALLACTIVITIES = 'ALLACTIVITIES'
