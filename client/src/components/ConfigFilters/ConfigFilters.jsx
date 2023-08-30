@@ -54,17 +54,6 @@ const ConfigFilters = ({ changeSelectFilter, isOrdenamiento, isfilter, nameFilte
                                     </select>
                                 )
                             }
-                            {/* <select onChange={filterCountries} className={style.selectFilter}>
-                                {   
-                                    nameFilter === 'Continent' ? (
-                                        continents.map((continent, index) => <option key={index} value={continent}>{continent}</option>)
-                                    ) : (
-                                        activities.length > 0 && (
-                                            activities?.map((activity, index) => <option key={index} value={activity.name}>{activity.name}</option>)
-                                        )
-                                    )
-                                }
-                            </select> */}
                         </>
                     )
                 }
