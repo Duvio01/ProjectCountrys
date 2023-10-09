@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import style from './DetailCard.module.css'
 
 const DetailCard = () => {
-    const dispatch = useDispatch()
     const { id } = useParams()
     const [country, setCountry] = useState(null)
     const countries = useSelector(state => state.allCountries)
+    const navigate = useNavigate()
 
     useEffect(() => {
-        setCountry(countries.rows.find(country => country.id === id))
+        if(countries.rows) {
+            setCountry(countries.rows.find(country => country.id === id))
+        }else{
+            navigate('/home')
+        }
+
     }, [])
 
     return (
